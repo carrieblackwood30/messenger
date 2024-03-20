@@ -71,6 +71,7 @@ async function post_Messages() {
 }
 
 function createMessage(messageArr) {
+
     for (let i = 0; i < messageArr.length; i++) {
         let card = document.createElement('div')
         let name = document.createElement('h5')
@@ -82,7 +83,6 @@ function createMessage(messageArr) {
         message.innerHTML += messageArr[i].message
         card.append(name, message)
         chatContainer.append(card)
-
     }
 
 }
@@ -90,6 +90,4 @@ function createMessage(messageArr) {
 submitMessage.addEventListener("click" ,(e) =>{
     e.preventDefault()
     post_Messages()
-    reloadFunc()
 })
-
