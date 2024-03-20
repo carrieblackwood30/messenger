@@ -5,9 +5,7 @@ const login = document.querySelector(".login")
 const messageInput = document.querySelector(".messageInput")
 const submitMessage = document.querySelector(".submitBtn")
 
-const URL = "http://localhost:3000/message"
-
-let messageArray = []
+const URL = "https://scalloped-oil-iodine.glitch.me/message"
 
 let user = sessionStorage.getItem("user")
 console.log(user)
@@ -27,6 +25,14 @@ btnInput.addEventListener("click" ,() =>{
     chatContainer.append(addedUser)
 })
 
+async function reloadFunc() {
+    setTimeout(function(){
+        fetch(URL).then(function(res){
+            return res.json()
+        }).then(location.reload())
+    }, 2000)
+}
+
 async function get_Messages() {
     try {
         const resp = await fetch(URL)
@@ -36,6 +42,13 @@ async function get_Messages() {
         return err;
     }
 }
+
+get_Messages()
+    .then((messageArr) => {
+        console.log(messageArr)
+        createMessage(messageArr)
+    })
+    .catch((err) => console.log(err))
 
 async function post_Messages() {
     try {
@@ -51,7 +64,7 @@ async function post_Messages() {
         }
         const resp = await fetch(URL, options)
         const data = await resp.json()
-        return data
+        return data 
     } catch (err) {
         return err
     }
@@ -69,6 +82,7 @@ function createMessage(messageArr) {
         message.innerHTML += messageArr[i].message
         card.append(name, message)
         chatContainer.append(card)
+
     }
 
 }
@@ -76,13 +90,6 @@ function createMessage(messageArr) {
 submitMessage.addEventListener("click" ,(e) =>{
     e.preventDefault()
     post_Messages()
-    createMessage()
+    reloadFunc()
 })
 
-get_Messages()
-    .then((messageArr) => {
-        messageArray = messageArr
-        console.log(messageArr)
-        createMessage(messageArr)
-    })
-    .catch((err) => console.log(err))

@@ -23,9 +23,9 @@
     padding: 2rem 1rem;
     border-radius: 10px;
     text-align: center;
-    position: absolute;
-    top: 30%;
-    left: 24%;
+    position: fixed;
+    top: 35%;
+    left: 35%;
     z-index: 3;
 }
 
@@ -64,40 +64,46 @@
     position: relative;
     background-color: var(--sec-color);
     border-radius: 20px;
+    overflow-y: scroll;
 }
 
 .chat-container{
-    height: 78vh;
+    height: fit-content;
     width: 100;
-    margin: 1rem;
+    margin: 2rem 1rem;
     background-color: var(--inside);
 }
 
 form{
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
+    margin-bottom: .5rem;
+    width: 50%;
     display: flex;
+    margin-left: 5%;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
 }
 
 form input{
     position: absolute;
-    width: 80%;
-    padding: .5rem 1rem;
+    width: 70%;
+    padding: .4rem 1rem;
+    margin-bottom: .2rem;
     border-radius: 10px;
     background-color: #1f1f57;
     border: none;
+    color: whitesmoke;
 }
 
 button{
     cursor: pointer;
     border-radius: 10px;
-    padding: .4rem .8rem;
+    padding: .3rem .8rem;
     font-weight: 900;
     z-index: 2;
-    margin-left: 71%;
+    margin-left: 60%;
     border: none;
     background-color: #5353be;
     color: white;
